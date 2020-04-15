@@ -13,7 +13,7 @@ export class LoginService extends BaseLoginService {
   login(user: User) {
     const { name, password } = user;
     const payload = { name, password };
-    const url = `${this.apiUrl}login`;
+    const url = `${this.apiUrl}`;
     return this.httpClient.post(url, payload);
   }
 }

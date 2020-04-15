@@ -1,6 +1,12 @@
 {
-  "/*": {
-    "target": "192.168.26.225",
+  "/user/*": {
+    "target": "http:\/\/192.168.2.101:8081",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/task/*": {
+    "target": "http:\/\/192.168.2.101:8081",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true

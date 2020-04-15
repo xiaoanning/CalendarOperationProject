@@ -1,6 +1,6 @@
 let express = require('express'),
     app = express(),
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 8081,
     mongoose = require('mongoose'), //created model loading here
     bodyParser = require('body-parser'),
     // respval = require('./app/middleware/resp-validate'),
@@ -30,5 +30,5 @@ app.use(auth);
 const initApp = require('./app/app');
 initApp(app);
 
-app.listen(port,"192.168.26.225");
+app.listen(port,"192.168.2.101");
 console.log('Task RESTful API server started on: ' + port);
