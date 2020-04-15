@@ -11,9 +11,17 @@ export class LoginService extends BaseLoginService {
   }
 
   login(user: User) {
-    const { name, password } = user;
-    const payload = { name, password };
+    const { username, password } = user;
+    const payload = { username, password };
     const url = `${this.apiUrl}login`;
-    return this.httpClient.post(url, payload);
+    return this.httpClient.post(url, payload, { observe: 'response' });
+  }
+
+  register(user: User) {
+    const { username, email, password } = user;
+    const payload = { username, email, password };
+    const url = `${this.apiUrl}register`;
+    console.log('---> usl: ', url);
+    return this.httpClient.post(url, payload, { observe: 'response' });
   }
 }

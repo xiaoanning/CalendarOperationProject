@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationModule } from 'libs/authentication/authentication/authentication.module';
 import { en_US, NgZorroAntdModule, NZ_I18N } from 'ng-zorro-antd';
+import { SharedModule } from 'shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -23,6 +24,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     AuthenticationModule,
+    SharedModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

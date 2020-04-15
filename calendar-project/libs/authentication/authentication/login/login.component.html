@@ -6,48 +6,64 @@
     </div>
     <nz-form-item>
       <nz-form-control nzErrorTip="Enter a valid user name.">
-        <nz-input-group [nzAddOnBefore]="userIcon">
-          <input
-            nz-input
-            placeholder="Enter your name"
-            type="text"
-            maxlength="100"
-            formControlName="username"
-          />
-        </nz-input-group>
-        <ng-template #userIcon>
-          <i nz-icon nzType="user"></i>
-        </ng-template>
+        <input
+          nz-input
+          placeholder="Enter your name"
+          type="text"
+          maxlength="100"
+          formControlName="username"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="!isLoginState">
+      <nz-form-control nzErrorTip="Enter a valid email.">
+        <input
+          nz-input
+          formControlName="email"
+          placeholder="email"
+          type="email"
+        />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip="Enter a valid password.">
-        <nz-input-group [nzAddOnBefore]="lockIcon">
-          <input
-            nz-input
-            placeholder="Password"
-            type="password"
-            autocomplete="off"
-            formControlName="password"
-            maxlength="40"
-          />
-        </nz-input-group>
-        <ng-template #lockIcon>
-          <i nz-icon nzType="lock"></i>
-        </ng-template>
+        <input
+          nz-input
+          placeholder="Password"
+          [type]="showPassWord ? 'text' : 'password'"
+          autocomplete="off"
+          formControlName="password"
+          maxlength="40"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="!isLoginState">
+      <nz-form-control nzErrorTip="Confirm your password.">
+        <input
+          nz-input
+          [type]="showPassWord ? 'text' : 'password'"
+          formControlName="confirm"
+          placeholder="confirm your password"
+        />
       </nz-form-control>
     </nz-form-item>
     <div class="action-panel">
       <div class="method-container">
-        <a>Create a new account</a>
+        <a (click)="toggleLoginAndRegister()">{{
+          isLoginState ? 'Create a new account' : 'Already had an account?'
+        }}</a>
       </div>
-      <label nz-checkbox>
+      <label
+        nz-checkbox
+        [(ngModel)]="showPassWord"
+        [ngModelOptions]="{ standalone: true }"
+      >
         <span class="action-text">Show my password</span>
       </label>
     </div>
     <div class="button-panel">
       <button nz-button nzType="primary" type="submit" (click)="onSubmit()">
-        Sign in
+        {{ isLoginState ? 'Sign in' : 'Register' }}
       </button>
     </div>
   </form>

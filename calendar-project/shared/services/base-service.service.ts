@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injector } from '@angular/core';
 
-const URL = 'api';
+const URL = '';
 
 export class BaseServiceService {
   protected httpClient: HttpClient;
