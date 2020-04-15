@@ -44,11 +44,18 @@
       }
     }
 
+    nz-form-item {
+      .has-error .ant-form-explain {
+        color: #ffffff !important;
+      }
+    }
+
     .action-panel {
       display: flex;
       justify-content: space-between;
       color: #ffffff;
       margin-bottom: 10px;
+      margin-top: 10px;
 
       .method-container {
         a {
