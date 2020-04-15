@@ -1,0 +1,26 @@
+@import './variables.scss';
+$prefixes: '-moz-', '-webkit-', '';
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    @each $prefix in $prefixes {
+      #{$prefix}box-shadow: inset $top $left $blur $color;
+    }
+  } @else {
+    @each $prefix in $prefixes {
+      #{$prefix}box-shadow: $top $left $blur $color;
+    }
+  }
+}
+
+@mixin filter($filters...) {
+  $filters-combined: '';
+  @each $filter in $filters {
+    $filters-combined: #{$filters-combined} $filter;
+  }
+  -webkit-filter: $filters-combined;
+  -moz-filter: $filters-combined;
+  -ms-filter: $filters-combined;
+  -o-filter: $filters-combined;
+  filter: $filters-combined;
+}

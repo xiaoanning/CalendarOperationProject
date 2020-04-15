@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-background"></div>
+<div class="login-panel">
+  <form [formGroup]="loginForm" nz-form>
+    <div class="logo">
+      <i nz-icon nzType="twitter" nzTheme="outline"></i>Pigeon Calendar
+    </div>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Enter a valid user name.">
+        <nz-input-group [nzAddOnBefore]="userIcon">
+          <input
+            nz-input
+            placeholder="Enter your name"
+            type="text"
+            maxlength="100"
+            formControlName="username"
+          />
+        </nz-input-group>
+        <ng-template #userIcon>
+          <i nz-icon nzType="user"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Enter a valid password.">
+        <nz-input-group [nzAddOnBefore]="lockIcon">
+          <input
+            nz-input
+            placeholder="Password"
+            type="password"
+            autocomplete="off"
+            formControlName="password"
+            maxlength="40"
+          />
+        </nz-input-group>
+        <ng-template #lockIcon>
+          <i nz-icon nzType="lock"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <div class="action-panel">
+      <div class="method-container">
+        <a>Create a new account</a>
+      </div>
+      <label nz-checkbox>
+        <span class="action-text">Show my password</span>
+      </label>
+    </div>
+    <div class="button-panel">
+      <button nz-button nzType="primary" type="submit" (click)="onSubmit()">
+        Sign in
+      </button>
+    </div>
+  </form>
+</div>
