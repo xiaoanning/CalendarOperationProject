@@ -6,22 +6,29 @@ import { BaseLoginService } from './base-login.service';
   providedIn: 'root',
 })
 export class LoginService extends BaseLoginService {
+  private currentUser: User;
+
   constructor(injector: Injector) {
     super(injector);
   }
 
   login(user: User) {
-    const { username, password } = user;
-    const payload = { username, password };
-    const url = `${this.apiUrl}`;
+    const { email, password } = user;
+    const payload = { email, password };
+    const url = `${this.apiUrl}login`;
     return this.httpClient.post(url, payload, { observe: 'response' });
   }
 
   register(user: User) {
     const { username, email, password } = user;
     const payload = { username, email, password };
-    const url = `${this.apiUrl}`;
-    console.log('---> usl: ', url);
+    const url = `${this.apiUrl}register`;
     return this.httpClient.post(url, payload, { observe: 'response' });
   }
+
+  setCurrentUser(user: User) {
+    this.currentUser = user;
+  }
+
+  getCurrentUser() {}
 }

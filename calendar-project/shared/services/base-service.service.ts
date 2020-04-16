@@ -8,8 +8,8 @@ export class BaseServiceService {
   protected apiUrl: string;
 
   constructor(injector: Injector, apiEndpoint: string) {
-    // this.apiUrl = `${URL}/${apiEndpoint}`;
-    this.apiUrl = '/user/login';
+    this.apiUrl = `${URL}/${apiEndpoint}`;
+    // this.apiUrl = '/user/login';
     this.httpClient = injector.get(HttpClient);
   }
 }

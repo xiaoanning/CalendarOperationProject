@@ -1,10 +1,32 @@
-::ng-deep {
-  .nav-logo {
+::ng-deep app-nav-bar {
+  .nav-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    height: 40px;
+    justify-content: space-between;
+    margin: 0 10px;
+    border-bottom: 2px solid #e1e1e1;
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      height: 40px;
+      color: #bdbdbd;
+
+      i {
+        font-size: 36px;
+        margin-right: 5px;
+        color: #03a9f4;
+      }
+    }
+
+    .date-display {
+      font-size: 24px;
+      font-weight: 700;
+    }
   }
 }

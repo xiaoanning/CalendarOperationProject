@@ -4,7 +4,7 @@
     <div class="logo">
       <i nz-icon nzType="twitter" nzTheme="outline"></i>Pigeon Calendar
     </div>
-    <nz-form-item>
+    <nz-form-item *ngIf="!isLoginState">
       <nz-form-control nzErrorTip="Enter a valid user name.">
         <input
           nz-input
@@ -15,7 +15,7 @@
         />
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item *ngIf="!isLoginState">
+    <nz-form-item>
       <nz-form-control nzErrorTip="Enter a valid email.">
         <input
           nz-input

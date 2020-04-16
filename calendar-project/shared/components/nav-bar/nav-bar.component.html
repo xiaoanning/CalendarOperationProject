@@ -3,6 +3,12 @@
     <i nz-icon nzType="twitter" nzTheme="outline"></i>
     Pigeon
   </div>
-  <div class="date-display"></div>
-  <div class="login-icon"></div>
+  <div class="date-display">{{ currentTime | date: 'MMMM y ' }}</div>
+  <div class="login-icon">
+    <nz-avatar
+      nzIcon="user"
+      [nzSize]="36"
+      style="background-color: #87d068;"
+    ></nz-avatar>
+  </div>
 </div>

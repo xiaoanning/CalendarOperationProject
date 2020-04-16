@@ -10,7 +10,7 @@ const routes: Routes = [
     redirectTo: 'user',
   },
   {
-    path: 'user',
+    path: 'home',
     component: UserComponent,
   },
   {

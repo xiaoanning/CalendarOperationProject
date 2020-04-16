@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MarkControlState, User } from './models/login.model';
 import { LoginService } from './services/login.service';
 
@@ -13,11 +14,16 @@ export class LoginComponent implements OnInit {
   isLoginState = true;
   isLoading = false;
   showPassWord = false;
+  @HostBinding('class.out') isOut = false;
 
-  constructor(fb: FormBuilder, private loginService: LoginService) {
+  constructor(
+    fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {
     this.loginForm = fb.group({
-      username: [null, [Validators.required]],
-      email: [null],
+      username: [null],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
       confirm: [null],
     });
@@ -30,15 +36,20 @@ export class LoginComponent implements OnInit {
     this.markFormControlsState(this.loginForm, MarkControlState.DIRTY);
     //this.loginForm.disable();
     const user = {} as User;
-    user.username = this.loginForm.get('username').value;
+    user.email = this.loginForm.get('email').value;
     user.password = this.loginForm.get('password').value;
-    if (this.loginForm.get('email').value) {
-      user.email = this.loginForm.get('email').value;
+    if (this.loginForm.get('username').value) {
+      user.email = this.loginForm.get('username').value;
     }
     this.isLoginState
       ? this.loginService.login(user).subscribe(
           (response) => {
-            console.log('---> login response: ', response);
+            this.isOut = true;
+            // tslint:disable-next-line: no-string-literal
+            const { username, email, password } = response.body['data'];
+            const currentUser = { username, email, password };
+            this.loginService.setCurrentUser(currentUser);
+            this.routerNavigate();
           },
           (e) => {
             console.log('---> login error: ', e);
@@ -46,7 +57,12 @@ export class LoginComponent implements OnInit {
         )
       : this.loginService.register(user).subscribe(
           (response) => {
-            console.log('---> register response: ', response);
+            this.isOut = true;
+            // tslint:disable-next-line: no-string-literal
+            const { username, email, password } = response.body['data'];
+            const currentUser = { username, email, password };
+            this.loginService.setCurrentUser(currentUser);
+            this.routerNavigate();
           },
           (e) => {
             console.log('---> register error: ', e);
@@ -58,10 +74,10 @@ export class LoginComponent implements OnInit {
     this.isLoginState = !this.isLoginState;
     this.loginForm.enable();
     if (this.isLoginState) {
-      this.removerControlRequired('email');
+      this.removerControlRequired('username');
       this.removerControlRequired('confirm');
     } else {
-      this.setControlRequired('email');
+      this.setControlRequired('username');
       this.setControlRequired('confirm');
     }
   }
@@ -89,5 +105,11 @@ export class LoginComponent implements OnInit {
         }
       }
     }
+  }
+
+  routerNavigate() {
+    setTimeout(() => {
+      this.router.navigate(['../../home']);
+    }, 2000);
   }
 }
