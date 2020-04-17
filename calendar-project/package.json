@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --port=8083 --host=192.168.26.225",
+    "start": "ng serve --proxy-config proxy.conf.json --port=8083 --host=10.9.82.197",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
