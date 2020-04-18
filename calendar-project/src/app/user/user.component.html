@@ -6,16 +6,18 @@
       class="calendar-container"
       [ngStyle]="{
         width: '300px',
-
         border: '1px solid #d9d9d9',
         borderRadius: '4px'
       }"
     >
-      <nz-calendar [nzFullscreen]="false"></nz-calendar>
+      <nz-calendar
+        [nzFullscreen]="false"
+        (nzSelectChange)="onSelectDate($event)"
+      ></nz-calendar>
     </div>
   </div>
   <nz-divider nzType="vertical" class="sider-bar-divider"></nz-divider>
   <div class="task-container">
-    <app-task></app-task>
+    <app-task [selectedDate]="selectedDate"></app-task>
   </div>
 </div>

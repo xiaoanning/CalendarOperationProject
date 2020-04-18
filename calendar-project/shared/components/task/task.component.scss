@@ -1,0 +1,76 @@
+::ng-deep app-task {
+  .action-panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    .right-button {
+      margin-right: 30px;
+      button {
+        margin-left: 10px;
+        margin-right: 10px;
+        min-width: 70px;
+      }
+    }
+  }
+
+  .display-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .date-display {
+      font-size: 18px;
+      margin-top: 10px;
+      margin-left: 7px;
+      color: #9e9e9e;
+
+      i {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &.day-mode {
+    app-day-colunm:not(.activated) {
+      display: none;
+    }
+  }
+
+  &:not(.day-mode) {
+    app-day-colunm {
+      .day-container {
+        &:hover {
+          border: 2px dotted #81d4fa;
+        }
+      }
+    }
+  }
+
+  .task-body {
+    display: flex;
+    flex-direction: row;
+
+    .timeline-container {
+      width: 60px;
+      margin-top: 74px;
+    }
+
+    .task-management-body {
+      width: 100%;
+      margin-right: 30px;
+
+      app-task-header.hide {
+        visibility: hidden;
+      }
+
+      .task-content {
+        display: flex;
+      }
+    }
+  }
+}

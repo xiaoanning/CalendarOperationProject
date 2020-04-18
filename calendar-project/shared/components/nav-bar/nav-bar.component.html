@@ -1,6 +1,6 @@
 <div class="nav-container">
   <div class="nav-logo">
-    <i nz-icon nzType="twitter" nzTheme="outline"></i>
+    <i nz-icon nzType="fire" nzTheme="outline"></i>
     Forest
   </div>
   <div class="date-display">{{ currentTime | date: 'MMMM y ' }}</div>
@@ -9,6 +9,25 @@
       nzIcon="user"
       [nzSize]="36"
       style="background-color: #87d068;"
+      nz-popover
+      nzPopoverTrigger="click"
+      [nzPopoverContent]="contentTemplate"
+      nzPopoverPlacement="bottomRight"
     ></nz-avatar>
+    <ng-template #contentTemplate>
+      <div class="login-detail-container">
+        <nz-avatar
+          [nzText]="user.username[0] | uppercase"
+          [nzSize]="48"
+        ></nz-avatar>
+        <div class="name-container">{{ user.username }}</div>
+        <div class="email-container">{{ user.email }}</div>
+        <nz-divider></nz-divider>
+        <div class="sign-out-container" (click)="signout()">
+          <i nz-icon nzType="pause-circle" nzTheme="outline"></i>
+          <a>Sign out</a>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

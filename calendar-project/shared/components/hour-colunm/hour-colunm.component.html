@@ -1,0 +1,8 @@
+<div
+  class="hour-box"
+  (click)="openDialog()"
+  [ngClass]="{ 'exist-task': existTask }"
+>
+  <span>{{ existTask ? (existTask.createdDate | date: 'yyyy-M-d') : '' }}</span>
+  <span>{{ existTask ? existTask.title : '' }}</span>
+</div>

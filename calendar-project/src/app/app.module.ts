@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import en from '@angular/common/locales/en';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,7 @@ import { en_US, NgZorroAntdModule, NZ_I18N } from 'ng-zorro-antd';
 import { SharedModule } from 'shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptorService } from './http-interceptors/auth-interceptor.service';
 import { UserComponent } from './user/user.component';
 
 registerLocaleData(en);
@@ -26,7 +27,17 @@ registerLocaleData(en);
     AuthenticationModule,
     SharedModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    {
+      provide: NZ_I18N,
+      useValue: en_US,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,8 @@
+<div class="day-container">
+  <app-hour-colunm
+    [time]="time"
+    [selectedDate]="selectedDay"
+    [dayInfo]="day"
+    *ngFor="let time of timeRange"
+  ></app-hour-colunm>
+</div>

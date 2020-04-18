@@ -1,0 +1,7 @@
+<div class="task-header-container">
+  <app-task-header-cell
+    [day]="day"
+    [ngClass]="{ selected: selectedDate.getDate() === day.date }"
+    *ngFor="let day of dateForWeek"
+  ></app-task-header-cell>
+</div>

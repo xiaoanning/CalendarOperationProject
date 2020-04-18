@@ -1,6 +1,57 @@
 <ng-container>
   <div class="action-panel">
-    <div class="left-button"></div>
-    <div class="right-button"></div>
+    <div class="left-button">
+      <button nz-button nzType="default" nzShape="round">Today</button>
+    </div>
+    <div class="right-button">
+      <button
+        nz-button
+        nzType="default"
+        nzShape="round"
+        (click)="setDisplayMode(true)"
+      >
+        Day
+      </button>
+      <button
+        nz-button
+        nzType="default"
+        nzShape="round"
+        (click)="setDisplayMode(false)"
+      >
+        Week
+      </button>
+    </div>
+  </div>
+  <div class="display-panel">
+    <div class="date-display">
+      {{ selectedDate | date: 'MM/d' }}
+      <i nz-icon nzType="left" nzTheme="outline" style="margin-left: 10px;"></i>
+      <i nz-icon nzType="right" nzTheme="outline"></i>
+    </div>
+  </div>
+  <div class="task-body">
+    <div class="timeline-container">
+      <nz-timeline nzMode="right">
+        <nz-timeline-item *ngFor="let time of timeRange">{{
+          time
+        }}</nz-timeline-item>
+      </nz-timeline>
+    </div>
+    <div class="task-management-body">
+      <app-task-header
+        [dateForWeek]="dateForWeek"
+        [selectedDate]="selectedDate"
+        [ngClass]="{ hide: dayMode }"
+      ></app-task-header>
+      <div class="task-content">
+        <app-day-colunm
+          *ngFor="let day of dateForWeek"
+          [day]="day"
+          [ngClass]="{ activated: day.day === dayInWeek }"
+          [selectedDay]="selectedDate"
+          [timeRange]="timeRange"
+        ></app-day-colunm>
+      </div>
+    </div>
   </div>
 </ng-container>

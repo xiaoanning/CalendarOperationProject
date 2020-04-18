@@ -47,8 +47,11 @@ export class LoginComponent implements OnInit {
             this.isOut = true;
             // tslint:disable-next-line: no-string-literal
             const { username, email, password } = response.body['data'];
+            // tslint:disable-next-line: no-string-literal
+            const token = response.body['token'];
             const currentUser = { username, email, password };
-            this.loginService.setCurrentUser(currentUser);
+            this.loginService.saveUserInLocalStorage(currentUser);
+            this.loginService.saveToken(token);
             this.routerNavigate();
           },
           (e) => {
@@ -60,8 +63,11 @@ export class LoginComponent implements OnInit {
             this.isOut = true;
             // tslint:disable-next-line: no-string-literal
             const { username, email, password } = response.body['data'];
+            // tslint:disable-next-line: no-string-literal
+            const token = response.body['token'];
             const currentUser = { username, email, password };
-            this.loginService.setCurrentUser(currentUser);
+            this.loginService.saveUserInLocalStorage(currentUser);
+            this.loginService.saveToken(token);
             this.routerNavigate();
           },
           (e) => {

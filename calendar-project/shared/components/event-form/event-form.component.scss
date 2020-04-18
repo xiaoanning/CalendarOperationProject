@@ -1,0 +1,9 @@
+::ng-deep app-event-form {
+  nz-time-picker[nzdisabled] {
+    pointer-events: none;
+
+    input {
+      background-color: #eeeeee;
+    }
+  }
+}

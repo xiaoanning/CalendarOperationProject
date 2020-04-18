@@ -1,0 +1,32 @@
+<form nz-form [formGroup]="eventForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Title</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Title is required!">
+      <input nz-input formControlName="title" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Place</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzErrorTip="Place is required!">
+      <input nz-input formControlName="place" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">Description</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <textarea rows="4" nz-input formControlName="description"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">
+      Time
+    </nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <nz-time-picker nzDisabled formControlName="startTime"></nz-time-picker>
+      <span> - </span>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="6">
+      <nz-time-picker nzDisabled formControlName="endTime"></nz-time-picker>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -7,6 +7,7 @@ import { BaseLoginService } from './base-login.service';
 })
 export class LoginService extends BaseLoginService {
   private currentUser: User;
+  private token: string;
 
   constructor(injector: Injector) {
     super(injector);
@@ -26,9 +27,43 @@ export class LoginService extends BaseLoginService {
     return this.httpClient.post(url, payload, { observe: 'response' });
   }
 
+  signout() {
+    this.removeUserInLocalStorage();
+    this.setCurrentUser(null);
+  }
+
   setCurrentUser(user: User) {
     this.currentUser = user;
   }
 
-  getCurrentUser() {}
+  getCurrentUser() {
+    localStorage.getItem('user')
+      ? (this.currentUser = JSON.parse(localStorage.getItem('user')))
+      : (this.currentUser = null);
+    return this.currentUser;
+  }
+
+  getToken() {
+    localStorage.getItem('token')
+      ? (this.token = localStorage.getItem('token'))
+      : (this.token = null);
+    return this.token;
+  }
+
+  saveUserInLocalStorage(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.setCurrentUser(user);
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', JSON.stringify(token));
+  }
+
+  removeUserInLocalStorage() {
+    localStorage.removeItem('user');
+  }
+
+  removeToken() {
+    localStorage.removeItem('token');
+  }
 }
