@@ -111,10 +111,17 @@ exports.update = (request, response) => {
     if (email) {
         updatedTask.creatorEmail = email;
     }
+	console.log('update 1:'+JSON.stringify(updatedTask));
     updatedTask.id = taskId;
     const result = (task) => {
-        response.status(200);
-        response.json(task);
+		const result = (task) => {
+			response.status(200);
+			response.json(task);
+		};
+		const promise = taskService.update(updatedTask);
+		promise
+		    .then(result)
+		    .catch(renderErrorResponse(response));
     };
     const promise = taskService.update(updatedTask);
     promise
