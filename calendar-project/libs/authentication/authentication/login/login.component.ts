@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     user.email = this.loginForm.get('email').value;
     user.password = this.loginForm.get('password').value;
     if (this.loginForm.get('username').value) {
-      user.email = this.loginForm.get('username').value;
+      user.username = this.loginForm.get('username').value;
     }
     this.isLoginState
       ? this.loginService.login(user).subscribe(
@@ -62,13 +62,12 @@ export class LoginComponent implements OnInit {
           (response) => {
             this.isOut = true;
             // tslint:disable-next-line: no-string-literal
-            const { username, email, password } = response.body['data'];
-            // tslint:disable-next-line: no-string-literal
-            const token = response.body['token'];
-            const currentUser = { username, email, password };
-            this.loginService.saveUserInLocalStorage(currentUser);
-            this.loginService.saveToken(token);
-            this.routerNavigate();
+            // const { username, email, password } = response.body['data'];
+            // const currentUser = { username, email, password };
+            // this.loginService.saveUserInLocalStorage(currentUser);
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
           },
           (e) => {
             console.log('---> register error: ', e);

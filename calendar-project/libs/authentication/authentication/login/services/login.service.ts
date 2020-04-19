@@ -23,6 +23,7 @@ export class LoginService extends BaseLoginService {
   register(user: User) {
     const { username, email, password } = user;
     const payload = { username, email, password };
+    console.log('---> register payload: ', payload, user);
     const url = `${this.apiUrl}register`;
     return this.httpClient.post(url, payload, { observe: 'response' });
   }
