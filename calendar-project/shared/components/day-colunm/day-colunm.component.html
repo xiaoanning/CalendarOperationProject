@@ -3,6 +3,7 @@
     [time]="time"
     [selectedDate]="selectedDay"
     [dayInfo]="day"
-    *ngFor="let time of timeRange"
+    [existTask]="getMapTask(i)"
+    *ngFor="let time of timeRange; let i = index"
   ></app-hour-colunm>
 </div>

@@ -12,7 +12,7 @@ export class HourColunmComponent implements OnInit {
   @Input() time;
   @Input() selectedDate: Date;
   @Input() dayInfo: DateForDay;
-  existTask: Task;
+  @Input() existTask: Task;
 
   constructor(private modalService: NzModalService) {}
 
@@ -61,7 +61,7 @@ export class HourColunmComponent implements OnInit {
 
     modal.afterClose.subscribe((createdTask) => {
       console.log('---> after close: ', createdTask);
-      if (createdTask) {
+      if (createdTask !== undefined) {
         this.existTask = createdTask;
       }
     });

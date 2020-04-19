@@ -35,7 +35,9 @@ export class EventFormComponent implements OnInit {
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
     });
-    this.dispatchTime(this.dayInfo.dateInfo, this.time);
+    if (this.dayInfo) {
+      this.dispatchTime(this.dayInfo.dateInfo, this.time);
+    }
     this.dispatchForm();
   }
 

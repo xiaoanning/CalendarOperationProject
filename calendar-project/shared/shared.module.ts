@@ -8,6 +8,7 @@ import { HourColunmComponent } from './components/hour-colunm/hour-colunm.compon
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { TaskHeaderCellComponent } from './components/task-header-cell/task-header-cell.component';
 import { TaskHeaderComponent } from './components/task-header/task-header.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskComponent } from './components/task/task.component';
 
 const COMPONENTS = [
@@ -18,6 +19,7 @@ const COMPONENTS = [
   EventFormComponent,
   TaskHeaderComponent,
   TaskHeaderCellComponent,
+  TaskListComponent,
 ];
 
 @NgModule({

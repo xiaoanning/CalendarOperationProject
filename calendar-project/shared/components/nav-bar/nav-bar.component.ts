@@ -28,4 +28,8 @@ export class NavBarComponent implements OnInit {
   redirectToLogin() {
     this.router.navigate(['../auth/login']);
   }
+
+  navigateToSearch() {
+    this.router.navigate(['../search']);
+  }
 }

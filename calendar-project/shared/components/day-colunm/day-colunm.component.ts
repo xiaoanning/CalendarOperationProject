@@ -20,6 +20,7 @@ export class DayColunmComponent implements OnInit, OnChanges {
   @Input() day: DateForDay;
 
   tasks: Task[] = [];
+  taskEntities;
 
   constructor(
     private taskService: TaskServiceService,
@@ -35,15 +36,33 @@ export class DayColunmComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes && changes.selectedDay) {
       this.selectedDay = changes.selectedDay.currentValue;
+      this.loadTask();
     }
   }
 
   loadTask() {
     const user = this.loginService.getCurrentUser();
     this.taskService
-      .getTasksByDay(this.selectedDay, user)
-      .subscribe((tasks) => {
-        console.log('---> get tasks for a day: ', tasks);
+      .getTasksByDay(this.day.dateInfo, user)
+      .subscribe((tasks: Task[]) => {
+        console.log('---> get tasks for a day: ', tasks, this.timeRange);
+        this.tasks = tasks;
+        this.taskEntities = this.generateTaskEntities(tasks);
       });
+  }
+
+  getMapTask(index: number) {
+    return this.taskEntities && this.taskEntities[index]
+      ? this.taskEntities[index]
+      : null;
+  }
+
+  generateTaskEntities(taskArr: Task[]) {
+    return taskArr.reduce((keys, task) => {
+      const startTime = new Date(task.startTime);
+      const key = startTime.getHours();
+      keys[key] = task;
+      return keys;
+    }, {});
   }
 }

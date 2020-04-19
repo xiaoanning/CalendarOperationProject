@@ -2,6 +2,9 @@
   <div class="nav-logo">
     <i nz-icon nzType="fire" nzTheme="outline"></i>
     Forest
+    <button nz-button nzType="primary" (click)="navigateToSearch()">
+      Search Page
+    </button>
   </div>
   <div class="date-display">{{ currentTime | date: 'MMMM y ' }}</div>
   <div class="login-icon">

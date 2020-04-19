@@ -12,11 +12,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './http-interceptors/auth-interceptor.service';
 import { UserComponent } from './user/user.component';
+import { SearchComponent } from './search/search.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, UserComponent],
+  declarations: [AppComponent, UserComponent, SearchComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

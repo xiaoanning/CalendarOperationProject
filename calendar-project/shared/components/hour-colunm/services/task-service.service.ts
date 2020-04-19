@@ -26,8 +26,15 @@ export class TaskServiceService extends BaseTaskService {
   }
 
   getTasksByDay(date: Date, user: User) {
-    const dayParam = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    const dayParam = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
     const url = `${this.apiUrl}oneday?day=${dayParam}&email=${user.email}`;
+    return this.httpClient.get(url);
+  }
+
+  getAllTask(keyword: string, user: User) {
+    const url = `${this.apiUrl}?keyword=${keyword}&email=${user.email}`;
     return this.httpClient.get(url);
   }
 }

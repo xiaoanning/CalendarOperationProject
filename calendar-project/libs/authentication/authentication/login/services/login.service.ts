@@ -57,7 +57,7 @@ export class LoginService extends BaseLoginService {
   }
 
   saveToken(token: string) {
-    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('token', token);
   }
 
   removeUserInLocalStorage() {

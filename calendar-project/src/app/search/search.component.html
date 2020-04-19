@@ -1,0 +1,21 @@
+<div class="search-container">
+  <button nz-button nzType="primary" (click)="navigateToHome()">Home</button>
+  <div class="search-input">
+    <div class="header-text">Search task</div>
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input
+        type="text"
+        nz-input
+        placeholder="input search text"
+        [(ngModel)]="keyword"
+        (ngModelChange)="searchTask($event)"
+      />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+  </div>
+</div>
+<div class="result-container">
+  <app-task-list [tasks]="tasks"></app-task-list>
+</div>

@@ -1,0 +1,8 @@
+<div class="tasks-container">
+  <div class="task-detail" *ngFor="let task of tasks">
+    <app-hour-colunm [existTask]="task"></app-hour-colunm>
+  </div>
+  <div class="empty-info" *ngIf="!tasks || tasks?.length === 0">
+    <nz-empty></nz-empty>
+  </div>
+</div>

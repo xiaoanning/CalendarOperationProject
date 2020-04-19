@@ -1,0 +1,15 @@
+::ng-deep app-task-list {
+  .tasks-container {
+    margin: 30px 20%;
+
+    .task-detail {
+      margin-bottom: 10px;
+
+      app-hour-colunm {
+        .exist-task {
+          background-color: rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+  }
+}
