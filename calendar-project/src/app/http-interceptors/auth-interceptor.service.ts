@@ -24,15 +24,13 @@ export class AuthInterceptorService implements HttpInterceptor {
     }
     if (token) {
       request = request.clone({
-        setHeaders: { Authorization: `Bearer ${token}` },
+        setHeaders: { 'x-access-token': `${token}` },
       });
     }
     return next.handle(request);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    if (this.loginService.getToken()) {
-      return this.tryInjectToken(request, next);
-    }
+    return this.tryInjectToken(request, next);
   }
 }

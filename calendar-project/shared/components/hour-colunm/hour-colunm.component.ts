@@ -19,7 +19,7 @@ export class HourColunmComponent implements OnInit {
   ngOnInit() {}
 
   openDialog() {
-    console.log('---> day info: ', this.dayInfo, this.time);
+    console.log('---> day info: ', this.dayInfo, this.time, this.selectedDate);
     const modal = this.modalService.create({
       nzContent: EventFormComponent,
       nzWidth: '600px',

@@ -1,4 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
+import { User } from 'libs/authentication/authentication/login/models/login.model';
 import { Task } from 'shared/models/task.model';
 import { BaseTaskService } from './base-task-service';
 
@@ -22,5 +23,11 @@ export class TaskServiceService extends BaseTaskService {
   delete(payload: Task) {
     const url = `${this.apiUrl}${payload.id}?email=${payload.creatorEmail}`;
     return this.httpClient.delete(url);
+  }
+
+  getTasksByDay(date: Date, user: User) {
+    const dayParam = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    const url = `${this.apiUrl}oneday?day=${dayParam}&email=${user.email}`;
+    return this.httpClient.get(url);
   }
 }

@@ -1,4 +1,11 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { DateForDay, DayEnum } from 'shared/models/task.model';
 
 const HOURS_IN_DAY = 24;
@@ -17,7 +24,7 @@ const DAYS_IN_WEEK: DayEnum[] = [
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnChanges {
   @Input() selectedDate: Date;
   timeRange = [];
   dayInWeek;
@@ -31,6 +38,14 @@ export class TaskComponent implements OnInit {
     this.generateTimeRange();
     this.setActivatedDay();
     this.generateDateForWeek();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes && changes.selectedDate) {
+      this.selectedDate = changes.selectedDate.currentValue;
+      this.setActivatedDay();
+      this.generateDateForWeek();
+    }
   }
 
   setDisplayMode(value: boolean) {
@@ -79,5 +94,12 @@ export class TaskComponent implements OnInit {
     result.date = dateNum;
     result.dateInfo = alterDate;
     return result;
+  }
+
+  changeDate(dayDif: number) {
+    console.log('---> click change date');
+    const currentDay = new Date(this.selectedDate);
+    currentDay.setDate(currentDay.getDate() + dayDif);
+    this.selectedDate = new Date(currentDay);
   }
 }

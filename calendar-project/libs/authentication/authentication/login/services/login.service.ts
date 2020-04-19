@@ -29,6 +29,7 @@ export class LoginService extends BaseLoginService {
 
   signout() {
     this.removeUserInLocalStorage();
+    this.removeToken();
     this.setCurrentUser(null);
   }
 
